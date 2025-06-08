@@ -1,11 +1,13 @@
 func lexicalOrder(n int) []int {
-	answer := make([]int, 0)
+	answer := make([]int, n)
+	index := 0
 	var dfs func(start string)
 	dfs = func(start string) {
 		for i := range 10 {
-			i, err := strconv.Atoi((start + strconv.Itoa(i)))
-			if err == nil && i <= n {
-				answer = append(answer, i)
+			i, _ := strconv.Atoi((start + strconv.Itoa(i)))
+			if i <= n {
+				answer[index] = i
+				index++
 				dfs(strconv.Itoa(i))
 			} else {
 				break
@@ -14,8 +16,10 @@ func lexicalOrder(n int) []int {
 	}
 	for i := 1; i < 10; i++ {
 		if i <= n {
-			answer = append(answer, i)
+			answer[index] = i
+			index++
 			dfs(strconv.Itoa(i))
+
 		} else {
 			break
 		}
