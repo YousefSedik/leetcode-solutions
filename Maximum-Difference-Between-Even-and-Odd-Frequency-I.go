@@ -1,9 +1,9 @@
 func maxDifference(s string) int {
-    freq := [27]int{}
+    freq := [27]int8{}
     for _, letter := range(s){
         freq[int(letter) - 97] += 1
     }
-    a1, a2 := -1, 9999
+    var a1, a2 int8 = 0, 100
     for _, occ := range(freq){
         if occ != 0 {
             if occ % 2 == 0{
@@ -13,6 +13,6 @@ func maxDifference(s string) int {
             }
         }
     }
-    return a1 - a2
+    return int(a1 - a2)
     
 }
