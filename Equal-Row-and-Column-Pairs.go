@@ -1,25 +1,25 @@
 func equalPairs(grid [][]int) int {
-	row_mapper := make(map[string]int)
-	col_mapper := make(map[string]int)
-	row, col := "", ""
+	rowMapper := make(map[string]int)
+	n := len(grid)
+
+	for i := 0; i < n; i++ {
+		var row strings.Builder
+		for j := 0; j < n; j++ {
+			row.WriteString(fmt.Sprint(grid[i][j]))
+			row.WriteByte(',')
+		}
+		rowMapper[row.String()]++
+	}
+
 	answer := 0
-
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid); j++ {
-			row += string(grid[j][i]) + " "
-			col += string(grid[i][j]) + " "
+	for i := 0; i < n; i++ {
+		var col strings.Builder
+		for j := 0; j < n; j++ {
+			col.WriteString(fmt.Sprint(grid[j][i]))
+			col.WriteByte(',')
 		}
-		row_mapper[row] += 1
-		col_mapper[col] += 1
+		answer += rowMapper[col.String()]
+	}
 
-		row = ""
-		col = ""
-	}
-	for key, value := range row_mapper {
-		if col_mapper[key] != 0{
-			answer += (value * col_mapper[key])
-		}
-	}
-	
 	return answer
 }
