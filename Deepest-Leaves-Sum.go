@@ -1,52 +1,25 @@
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
- func deepestLeavesSum(root *TreeNode) int {
-	// get the max depth
-	maxDepth := 1
-	curDepth := 1
-	var getMaxDepth func(node *TreeNode)
-	getMaxDepth = func(node *TreeNode) {
-		if node.Left != nil {
-			curDepth++
-			maxDepth = max(maxDepth, curDepth)
-			getMaxDepth(node.Left)
-			curDepth--
-		}
-		if node.Right != nil {
-			curDepth++
-			maxDepth = max(maxDepth, curDepth)
-			getMaxDepth(node.Right)
-			curDepth--
-		}
-	}
-	getMaxDepth(root)
-	// get the sum of the nodes where depth = max 
+func deepestLeavesSum(root *TreeNode) int {
 	answer := 0
-	curDepth = 1
-	var getSum func(node *TreeNode)
-	getSum = func(node *TreeNode) {
-		if curDepth == maxDepth{
-			answer += node.Val
+	// better if used BFS
+	endNode := *&TreeNode{Val: -1}
+	q := make([]*TreeNode, 0)
+	q = append(q, root)
+	q = append(q, &endNode)
+	for len(q) != 1 && q[0] != &endNode {
+		// while q[0] != -1, pop q  and add children's to q
+		answer = 0
+		for q[0].Val != -1 {
+			answer += q[0].Val
+			if q[0].Right != nil {
+				q = append(q, q[0].Right)
+			}
+			if q[0].Left != nil {
+				q = append(q, q[0].Left)
+			}
+			q = q[1:]
 		}
-		if node.Left != nil {
-			curDepth++
-			getSum(node.Left)
-			curDepth--
-		}
-		if node.Right != nil {
-			curDepth++
-			getSum(node.Right)
-			curDepth--
-		}
+		q = q[1:]
+		q = append(q, &endNode)
 	}
-    
-    getSum(root)
 	return answer
 }
-
