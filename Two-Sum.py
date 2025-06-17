@@ -13,11 +13,13 @@ class Solution:
                 p1 += 1
             else:
                 p2 -= 1
+        
         answer = []
         for i in range(len(nums)):
             if nums_original[i] == fnum:
                 answer.append(i)
                 fnum = None
+        
             elif nums_original[i] == snum:
                 answer.append(i)
                 snum = None
