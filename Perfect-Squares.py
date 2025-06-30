@@ -9,8 +9,10 @@ class Solution:
                 return 0
             if mem[sum] != -1:
                 return mem[sum]
-            mi = float("inf")
+            mi = 1000
             for option in options:
+                if (sum - option ) < 0:
+                    break
                 ret = solve(sum - option)
                 if ret:
                     mi = min(mi, 1 + ret)
