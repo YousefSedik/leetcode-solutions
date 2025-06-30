@@ -1,7 +1,7 @@
 class Solution:
     def numSquares(self, n: int) -> int:
         options = [i ** 2 for i in range(1, 101)]
-        mem = defaultdict(lambda: -1)
+        mem = [-1] * (n + 1)
         def solve(sum):
             if sum == 0:
                 return 1
