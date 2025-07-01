@@ -1,22 +1,13 @@
 class Solution:
     def numSquares(self, n: int) -> int:
         options = [i ** 2 for i in range(1, 101)]
-        mem = [-1] * (n + 1)
-        def solve(sum):
-            if sum == 0:
-                return 1
-            elif sum < 0:
-                return 0
-            if mem[sum] != -1:
-                return mem[sum]
-            mi = 1000
+        dp = [float("inf")] * (n + 1)
+        dp[0] = 0
+        for i in range(1, n + 1):
             for option in options:
-                if (sum - option ) < 0:
+                if i - option < 0:
                     break
-                ret = solve(sum - option)
-                if ret:
-                    mi = min(mi, 1 + ret)
-            mem[sum] = mi
-            return mi
+                
+                dp[i] = min(dp[i], dp[i - 1] + 1, dp[i - option] + 1)
 
-        return solve(n) - 1
+        return dp[n]
