@@ -22,4 +22,3 @@ class Solution:
 
         return max(all_even, all_odd, odd_then_even, even_then_odd)
 
-print(Solution().maximumLength([1, 2, 3, 4]))
