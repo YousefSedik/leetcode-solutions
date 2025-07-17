@@ -1,8 +1,6 @@
 class Solution:
     def maximumLength(self, nums: List[int]) -> int:
-        all_even = sum([1 if n % 2 == 0 else 0 for n in nums])
-        all_odd = sum([1 if n % 2 == 1 else 0 for n in nums])
-        odd_then_even, even_then_odd = 0, 0
+        all_even, all_odd, odd_then_even, even_then_odd = 0, 0, 0, 0
         last_is_even, last_is_odd = True, True
 
         for i in nums:
@@ -20,5 +18,9 @@ class Solution:
                 even_then_odd += 1
                 last_is_odd = False
 
+            if i % 2 == 0:
+                all_even += 1
+            else:
+                all_odd += 1
+        
         return max(all_even, all_odd, odd_then_even, even_then_odd)
-
