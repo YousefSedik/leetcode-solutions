@@ -13,13 +13,15 @@
 13                p1 += 1
 14            else:
 15                p2 -= 1
-16        answer = []
-17        for i in range(len(nums)):
-18            if nums_original[i] == fnum:
-19                answer.append(i)
-20                fnum = None
-21            elif nums_original[i] == snum:
-22                answer.append(i)
-23                snum = None
-24
-25        return answer
+16        
+17        answer = []
+18        for i in range(len(nums)):
+19            if nums_original[i] == fnum:
+20                answer.append(i)
+21                fnum = None
+22        
+23            elif nums_original[i] == snum:
+24                answer.append(i)
+25                snum = None
+26
+27        return answer
