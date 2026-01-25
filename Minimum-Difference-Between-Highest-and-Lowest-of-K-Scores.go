@@ -1,0 +1,1 @@
+func minimumDifference(nums []int, k int) int {    answer := math.MaxInt    slices.Sort(nums)    for i := 0; i < len(nums)-k+1; i++ {        answer = min(answer, nums[i+k-1] - nums[i])    }    return answer}
