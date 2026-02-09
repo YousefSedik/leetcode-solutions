@@ -25,7 +25,6 @@ func balanceBST(root *TreeNode) *TreeNode {
 	values = make([]int, 0)
 	// Inorder -> Left, Head, Right
 	getBSTValues(root)
-	fmt.Println(values)
 	return buildBalancedBST(0, len(values)-1)
 
 }
