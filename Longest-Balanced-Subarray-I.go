@@ -4,7 +4,7 @@ func longestBalanced(nums []int) int {
 	localAnswer := 0
 
 	for i := 0; i < n; i++ {
-		Exists := make(map[int]bool)
+		Exists := make(map[int]bool, n)
 		evenCounter, oddCounter := 0, 0
 		for j := i; j < n; j++ {
 			if !Exists[nums[j]] {
