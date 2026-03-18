@@ -17,5 +17,7 @@ class Solution:
             for j in range(cols):
                 if partial_sum[i+1][j+1] <= k:
                     counter += 1
+                else:
+                    break
         
         return counter
